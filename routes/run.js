@@ -10,7 +10,7 @@ router.post('/',
     evaluation_request_validation_middleware,
     async function (req, res, next) {
         try {
-            let request = req.body; //req.evaluation_request
+            let request = req.evaluation_request;
             let result = await rules_helper.evaluate(request.rules, request.fact, request.first_result_only);
             res.send(result);
         }
