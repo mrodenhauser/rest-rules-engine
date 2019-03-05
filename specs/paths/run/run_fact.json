@@ -1,0 +1,45 @@
+{
+  "tags": [
+    "run"
+  ],
+  "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "rule_set_id",
+      "schema": {
+        "type": "integer"
+      },
+      "required": true,
+      "description": "Id of the ruleset you want to use for evaluation"
+    }
+  ],
+  "requestBody": {
+    "description": "Fact and flag for first result only",
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "#/components/schemas/fact_run_request"
+        }
+      }
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/error_list"
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "schema": {
+        "$ref": "#/components/schemas/event"
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}

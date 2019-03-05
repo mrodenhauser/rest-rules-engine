@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "fact": {
+      "type": "object"
+    },
+    "first_result_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "fact"
+  ]
+}

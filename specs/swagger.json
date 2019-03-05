@@ -70,53 +70,60 @@
             "type": "array",
             "minItems": 1,
             "items": {
-              "type": "object",
-              "properties": {
-                "fact": {
-                  "type": "string"
-                },
-                "operator": {
-                  "type": "string",
-                  "enum": [
-                    "equal",
-                    "notEqual",
-                    "lessThan",
-                    "lessThanInclusive",
-                    "greaterThan",
-                    "greaterThanInclusive",
-                    "in",
-                    "notIn",
-                    "contains",
-                    "doesNotContain"
-                  ]
-                },
-                "value": {
-                  "anyOf": [
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "integer"
-                    },
-                    {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "fact": {
                       "type": "string"
                     },
-                    {
-                      "type": "boolean"
+                    "operator": {
+                      "type": "string",
+                      "enum": [
+                        "equal",
+                        "notEqual",
+                        "lessThan",
+                        "lessThanInclusive",
+                        "greaterThan",
+                        "greaterThanInclusive",
+                        "in",
+                        "notIn",
+                        "contains",
+                        "doesNotContain"
+                      ]
                     },
-                    {
-                      "type": "array"
-                    },
-                    {
-                      "type": "object"
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "array"
+                        },
+                        {
+                          "type": "object"
+                        }
+                      ]
                     }
+                  },
+                  "required": [
+                    "fact",
+                    "operator",
+                    "value"
                   ]
+                },
+                {
+                  "$ref": "#/components/schemas/condition"
                 }
-              },
-              "required": [
-                "fact",
-                "operator",
-                "value"
               ]
             }
           },
@@ -124,53 +131,60 @@
             "type": "array",
             "minItems": 1,
             "items": {
-              "type": "object",
-              "properties": {
-                "fact": {
-                  "type": "string"
-                },
-                "operator": {
-                  "type": "string",
-                  "enum": [
-                    "equal",
-                    "notEqual",
-                    "lessThan",
-                    "lessThanInclusive",
-                    "greaterThan",
-                    "greaterThanInclusive",
-                    "in",
-                    "notIn",
-                    "contains",
-                    "doesNotContain"
-                  ]
-                },
-                "value": {
-                  "anyOf": [
-                    {
-                      "type": "number"
-                    },
-                    {
-                      "type": "integer"
-                    },
-                    {
+              "anyOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "fact": {
                       "type": "string"
                     },
-                    {
-                      "type": "boolean"
+                    "operator": {
+                      "type": "string",
+                      "enum": [
+                        "equal",
+                        "notEqual",
+                        "lessThan",
+                        "lessThanInclusive",
+                        "greaterThan",
+                        "greaterThanInclusive",
+                        "in",
+                        "notIn",
+                        "contains",
+                        "doesNotContain"
+                      ]
                     },
-                    {
-                      "type": "array"
-                    },
-                    {
-                      "type": "object"
+                    "value": {
+                      "anyOf": [
+                        {
+                          "type": "number"
+                        },
+                        {
+                          "type": "integer"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "boolean"
+                        },
+                        {
+                          "type": "array"
+                        },
+                        {
+                          "type": "object"
+                        }
+                      ]
                     }
+                  },
+                  "required": [
+                    "fact",
+                    "operator",
+                    "value"
                   ]
+                },
+                {
+                  "$ref": "#/components/schemas/condition"
                 }
-              },
-              "required": [
-                "fact",
-                "operator",
-                "value"
               ]
             }
           }
@@ -212,53 +226,60 @@
                   "type": "array",
                   "minItems": 1,
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "fact": {
-                        "type": "string"
-                      },
-                      "operator": {
-                        "type": "string",
-                        "enum": [
-                          "equal",
-                          "notEqual",
-                          "lessThan",
-                          "lessThanInclusive",
-                          "greaterThan",
-                          "greaterThanInclusive",
-                          "in",
-                          "notIn",
-                          "contains",
-                          "doesNotContain"
-                        ]
-                      },
-                      "value": {
-                        "anyOf": [
-                          {
-                            "type": "number"
-                          },
-                          {
-                            "type": "integer"
-                          },
-                          {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "fact": {
                             "type": "string"
                           },
-                          {
-                            "type": "boolean"
+                          "operator": {
+                            "type": "string",
+                            "enum": [
+                              "equal",
+                              "notEqual",
+                              "lessThan",
+                              "lessThanInclusive",
+                              "greaterThan",
+                              "greaterThanInclusive",
+                              "in",
+                              "notIn",
+                              "contains",
+                              "doesNotContain"
+                            ]
                           },
-                          {
-                            "type": "array"
-                          },
-                          {
-                            "type": "object"
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "type": "array"
+                              },
+                              {
+                                "type": "object"
+                              }
+                            ]
                           }
+                        },
+                        "required": [
+                          "fact",
+                          "operator",
+                          "value"
                         ]
+                      },
+                      {
+                        "$ref": "#/components/schemas/condition"
                       }
-                    },
-                    "required": [
-                      "fact",
-                      "operator",
-                      "value"
                     ]
                   }
                 },
@@ -266,53 +287,60 @@
                   "type": "array",
                   "minItems": 1,
                   "items": {
-                    "type": "object",
-                    "properties": {
-                      "fact": {
-                        "type": "string"
-                      },
-                      "operator": {
-                        "type": "string",
-                        "enum": [
-                          "equal",
-                          "notEqual",
-                          "lessThan",
-                          "lessThanInclusive",
-                          "greaterThan",
-                          "greaterThanInclusive",
-                          "in",
-                          "notIn",
-                          "contains",
-                          "doesNotContain"
-                        ]
-                      },
-                      "value": {
-                        "anyOf": [
-                          {
-                            "type": "number"
-                          },
-                          {
-                            "type": "integer"
-                          },
-                          {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "fact": {
                             "type": "string"
                           },
-                          {
-                            "type": "boolean"
+                          "operator": {
+                            "type": "string",
+                            "enum": [
+                              "equal",
+                              "notEqual",
+                              "lessThan",
+                              "lessThanInclusive",
+                              "greaterThan",
+                              "greaterThanInclusive",
+                              "in",
+                              "notIn",
+                              "contains",
+                              "doesNotContain"
+                            ]
                           },
-                          {
-                            "type": "array"
-                          },
-                          {
-                            "type": "object"
+                          "value": {
+                            "anyOf": [
+                              {
+                                "type": "number"
+                              },
+                              {
+                                "type": "integer"
+                              },
+                              {
+                                "type": "string"
+                              },
+                              {
+                                "type": "boolean"
+                              },
+                              {
+                                "type": "array"
+                              },
+                              {
+                                "type": "object"
+                              }
+                            ]
                           }
+                        },
+                        "required": [
+                          "fact",
+                          "operator",
+                          "value"
                         ]
+                      },
+                      {
+                        "$ref": "#/components/schemas/condition"
                       }
-                    },
-                    "required": [
-                      "fact",
-                      "operator",
-                      "value"
                     ]
                   }
                 }
@@ -374,6 +402,20 @@
           "rules",
           "fact"
         ]
+      },
+      "fact_run_request": {
+        "type": "object",
+        "properties": {
+          "fact": {
+            "type": "object"
+          },
+          "first_result_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "fact"
+        ]
       }
     }
   },
@@ -396,6 +438,53 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/evaluation_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/components/schemas/event"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/components/schemas/error_list"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/run/ruleset/{rule_set_id}": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rule_set_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "Id of the ruleset you want to use for evaluation"
+          }
+        ],
+        "requestBody": {
+          "description": "Fact and flag for first result only",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fact_run_request"
               }
             }
           }
