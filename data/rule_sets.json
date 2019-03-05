@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "rules": [
+      {
+        "conditions": {
+          "all": [
+            {
+              "fact": "age",
+              "operator": "greaterThanInclusive",
+              "value": 18
+            },
+            {
+              "fact": "age",
+              "operator": "lessThanInclusive",
+              "value": 25
+            },
+            {
+              "any": [
+                {
+                  "fact": "state",
+                  "params": {
+                    "country": "us"
+                  },
+                  "operator": "equal",
+                  "value": "CO"
+                },
+                {
+                  "fact": "state",
+                  "params": {
+                    "country": "us"
+                  },
+                  "operator": "equal",
+                  "value": "UT"
+                }
+              ]
+            }
+          ]
+        },
+        "priority": 1,
+        "event": {
+          "type": "award",
+          "params": {
+            "giftCard": "amazon",
+            "value": 50
+          }
+        }
+      }
+    ]
+  }
+]
