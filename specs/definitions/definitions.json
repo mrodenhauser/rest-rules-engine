@@ -1,0 +1,8 @@
+{
+  "condition_criteria": {"$ref": "./conditions/condition_criteria.json"},
+  "condition": {"$ref": "./conditions/condition.json"},
+  "event": {"$ref": "./events/event.json"},
+  "rule_set": {"$ref": "./rule_sets/rule_set.json"},
+  "error_list": {"$ref": "./error_list.json"},
+  "evaluation_request": {"$ref": "./evaluation_request/evaluation_request.json"}
+}

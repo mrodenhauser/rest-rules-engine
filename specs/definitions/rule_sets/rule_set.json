@@ -1,0 +1,22 @@
+{
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "properties": {
+      "conditions": {
+        "$ref": "../conditions/condition.json"
+      },
+      "priority": {
+        "type": "integer"
+      },
+      "event": {
+        "$ref": "../events/event.json"
+      }
+    },
+    "required": [
+      "conditions",
+      "event"
+    ]
+  }
+}

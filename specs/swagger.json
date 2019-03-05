@@ -1,0 +1,423 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "rest-rules-engine",
+    "description": "GEXA BRE"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:2000/",
+      "description": "http url"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "condition_criteria": {
+        "type": "object",
+        "properties": {
+          "fact": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string",
+            "enum": [
+              "equal",
+              "notEqual",
+              "lessThan",
+              "lessThanInclusive",
+              "greaterThan",
+              "greaterThanInclusive",
+              "in",
+              "notIn",
+              "contains",
+              "doesNotContain"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array"
+              },
+              {
+                "type": "object"
+              }
+            ]
+          }
+        },
+        "required": [
+          "fact",
+          "operator",
+          "value"
+        ]
+      },
+      "condition": {
+        "type": "object",
+        "properties": {
+          "any": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "fact": {
+                  "type": "string"
+                },
+                "operator": {
+                  "type": "string",
+                  "enum": [
+                    "equal",
+                    "notEqual",
+                    "lessThan",
+                    "lessThanInclusive",
+                    "greaterThan",
+                    "greaterThanInclusive",
+                    "in",
+                    "notIn",
+                    "contains",
+                    "doesNotContain"
+                  ]
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "array"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "fact",
+                "operator",
+                "value"
+              ]
+            }
+          },
+          "all": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "fact": {
+                  "type": "string"
+                },
+                "operator": {
+                  "type": "string",
+                  "enum": [
+                    "equal",
+                    "notEqual",
+                    "lessThan",
+                    "lessThanInclusive",
+                    "greaterThan",
+                    "greaterThanInclusive",
+                    "in",
+                    "notIn",
+                    "contains",
+                    "doesNotContain"
+                  ]
+                },
+                "value": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    },
+                    {
+                      "type": "boolean"
+                    },
+                    {
+                      "type": "array"
+                    },
+                    {
+                      "type": "object"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "fact",
+                "operator",
+                "value"
+              ]
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "required": [
+              "all"
+            ]
+          },
+          {
+            "required": [
+              "any"
+            ]
+          }
+        ]
+      },
+      "event": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string"
+          },
+          "params": {
+            "type": "object"
+          }
+        }
+      },
+      "rule_set": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "type": "object",
+          "properties": {
+            "conditions": {
+              "type": "object",
+              "properties": {
+                "any": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fact": {
+                        "type": "string"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "enum": [
+                          "equal",
+                          "notEqual",
+                          "lessThan",
+                          "lessThanInclusive",
+                          "greaterThan",
+                          "greaterThanInclusive",
+                          "in",
+                          "notIn",
+                          "contains",
+                          "doesNotContain"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "array"
+                          },
+                          {
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "fact",
+                      "operator",
+                      "value"
+                    ]
+                  }
+                },
+                "all": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "fact": {
+                        "type": "string"
+                      },
+                      "operator": {
+                        "type": "string",
+                        "enum": [
+                          "equal",
+                          "notEqual",
+                          "lessThan",
+                          "lessThanInclusive",
+                          "greaterThan",
+                          "greaterThanInclusive",
+                          "in",
+                          "notIn",
+                          "contains",
+                          "doesNotContain"
+                        ]
+                      },
+                      "value": {
+                        "anyOf": [
+                          {
+                            "type": "number"
+                          },
+                          {
+                            "type": "integer"
+                          },
+                          {
+                            "type": "string"
+                          },
+                          {
+                            "type": "boolean"
+                          },
+                          {
+                            "type": "array"
+                          },
+                          {
+                            "type": "object"
+                          }
+                        ]
+                      }
+                    },
+                    "required": [
+                      "fact",
+                      "operator",
+                      "value"
+                    ]
+                  }
+                }
+              },
+              "oneOf": [
+                {
+                  "required": [
+                    "all"
+                  ]
+                },
+                {
+                  "required": [
+                    "any"
+                  ]
+                }
+              ]
+            },
+            "priority": {
+              "type": "integer"
+            },
+            "event": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "params": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "required": [
+            "conditions",
+            "event"
+          ]
+        }
+      },
+      "error_list": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "evaluation_request": {
+        "type": "object",
+        "properties": {
+          "rules": {
+            "$ref": "#/components/schemas/rule_set"
+          },
+          "fact": {
+            "type": "object"
+          },
+          "first_result_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "rules",
+          "fact"
+        ]
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/run": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
+        "requestBody": {
+          "description": "Rules and fact to evaluate",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/evaluation_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/components/schemas/event"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/components/schemas/error_list"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "rest-rules-engine",
+    "description": "GEXA BRE"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:2000/",
+      "description": "http url"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "$ref": "./paths/paths.json"
+  },
+  "components": {
+    "schemas": {
+      "$ref": "./definitions/definitions.json"
+    }
+  }
+}

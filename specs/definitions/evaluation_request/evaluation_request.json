@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "rules": {
+      "$ref": "#/components/schemas/rule_set"
+    },
+    "fact": {
+      "type": "object"
+    },
+    "first_result_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "rules",
+    "fact"
+  ]
+}

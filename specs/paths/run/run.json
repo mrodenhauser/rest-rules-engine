@@ -1,0 +1,5 @@
+{
+  "/run": {
+    "post": {"$ref": "run_post.json"}
+  }
+}

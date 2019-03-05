@@ -1,0 +1,34 @@
+{
+  "tags": [
+    "run"
+  ],
+  "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
+  "requestBody": {
+    "description": "Rules and fact to evaluate",
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "#/components/schemas/evaluation_request"
+        }
+      }
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/error_list"
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "schema": {
+        "$ref": "#/components/schemas/event"
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}

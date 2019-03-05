@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "fact": {
+      "type": "string"
+    },
+    "operator": {
+      "type": "string",
+      "enum": [
+        "equal",
+        "notEqual",
+        "lessThan",
+        "lessThanInclusive",
+        "greaterThan",
+        "greaterThanInclusive",
+        "in",
+        "notIn",
+        "contains",
+        "doesNotContain"
+      ]
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "array"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    }
+  },
+  "required": [
+    "fact",
+    "operator",
+    "value"
+  ]
+}
