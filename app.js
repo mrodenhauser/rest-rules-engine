@@ -15,7 +15,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+app.use(logger('combined'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -46,7 +46,17 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
-    console.log(err);
+    let error_details = {
+        message: err.message,
+        stack: err.stack,
+        error: err,
+        request_headers: req.headers,
+        request_url: req.url,
+        request_params: req.params,
+        request_query: req.query,
+        request_body: req.body
+    };
+    console.error(JSON.stringify(error_details));
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 

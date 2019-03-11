@@ -47,5 +47,33 @@
         }
       }
     ]
+  },
+  {
+    "id": 2,
+    "rules": [
+      {
+        "conditions": {
+          "all": [
+            {
+              "fact": "service_type",
+              "operator": "equal",
+              "value": "Switch"
+            },
+            {
+              "fact": "switch_hold",
+              "operator": "equal",
+              "value": true
+            }
+          ]
+        },
+        "event": {
+          "type": "Reject for a switch on a switch hold",
+          "params": {
+            "Status": "Reject",
+            "Reason": "Switch hold on a switch"
+          }
+        }
+      }
+    ]
   }
 ]
