@@ -1,3 +1,4 @@
+require('dotenv').config();
 let createError = require('http-errors');
 let express = require('express');
 let path = require('path');
@@ -10,6 +11,7 @@ let swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./specs/swagger.json');
 
 let app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

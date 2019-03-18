@@ -416,7 +416,26 @@
         "required": [
           "fact"
         ]
+      },
+      "fact_rule_name_request": {
+        "type": "object",
+        "properties": {
+          "rule_name":{
+            "type": "string"
+          },
+          "fact": {
+            "type": "object"
+          },    
+          "first_result_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "fact",
+          "rule_name"
+        ]
       }
+      
     }
   },
   "security": [
@@ -507,6 +526,43 @@
           }
         }
       }
+    },
+    "/run/rules/{rule_name}": {
+      "post": {
+        "tags": [
+          "rules"
+        ],
+        "summary": "Runs an engine with supplied rule name, facts and return result only",               
+        "requestBody": {
+          "description": "Fact and flag for first result only",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fact_rule_name_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/components/schemas/event"
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "schema": {
+              "$ref": "#/components/schemas/error_list"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
     }
+
   }
 }

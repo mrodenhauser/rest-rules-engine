@@ -8,5 +8,10 @@
     "post": {
       "$ref": "run_fact.json"
     }
+  },
+  "/run/rules/{rule_name_fact}": {
+    "post": {
+      "$ref": "rule_name.json"
+    }
   }
 }

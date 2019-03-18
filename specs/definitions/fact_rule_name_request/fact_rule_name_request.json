@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "rule_name":{
+      "type": "string"
+    },
+    "fact": {
+      "type": "object"
+    },    
+    "first_result_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "fact",
+    "rule_name"
+  ]
+}
