@@ -51,11 +51,9 @@ router.post('/ruleset/:rule_set_id',
             let rule_name = req.body.rule_name;                                    
             let fact = req.body.fact;
             let first_result_only = req.fact_rule_name_request.first_result_only;
-            let ruleset = astrulesservice_helper.get_by_rulename(rule_name, function (rs) {
-                return null;
-            });
-            if (ruleset) {
-                let result = await rules_helper.evaluate(ruleset.rules, fact, first_result_only);
+            let rule_set = await astrulesservice_helper.getRuleByName(rule_name);
+            if (rule_set) {
+                let result = await rules_helper.evaluate(rule_set, fact, first_result_only);
                 res.send(result);
             }
             else {
