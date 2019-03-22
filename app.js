@@ -29,6 +29,7 @@ app.use('/docs/swagger', function (req, res) {
 });
 
 app.use('/run', require('./routes/run'));
+app.use('/conditions', require('./routes/conditions'));
 app.use('/engines/', enginesRouter);
 
 app.use('/', swaggerUi.serve);

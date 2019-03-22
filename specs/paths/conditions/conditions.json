@@ -1,0 +1,15 @@
+{
+  "/conditions/{id}": {
+    "get": {
+      "$ref": "get_by_id.json"
+    }
+  },
+  "/conditions": {
+    "get": {
+      "$ref": "search.json"
+    },
+    "post": {
+      "$ref": "insert.json"
+    }
+  }
+}

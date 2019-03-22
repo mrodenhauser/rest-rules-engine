@@ -1,0 +1,35 @@
+{
+  "tags": [
+    "conditions"
+  ],
+  "summary": "Inserts a condition",
+
+  "requestBody": {
+    "description": "condition",
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "#/components/schemas/condition"
+        }
+      }
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/error_list"
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "schema": {
+        "$ref": "#/components/schemas/condition"
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}
