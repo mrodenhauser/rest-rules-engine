@@ -1,0 +1,319 @@
+[
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSR",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "lessThan",
+          "value" : 14,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 8,
+    "event" : {
+      "type" : "amsr_before_2_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 1
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 1
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSR",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "lessThan",
+          "value" : 16,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 7,
+    "event" : {
+      "type" : "amsr_before_4_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 1,
+            "Max" : 1
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 2
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 1
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSR",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "greaterThanInclusive",
+          "value" : 16,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 6,
+    "event" : {
+      "type" : "amsr_after_4_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 2
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 2
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSM",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "lessThan",
+          "value" : 14,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 5,
+    "event" : {
+      "type" : "amsm_before_2_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 1,
+            "Max" : 2
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 3
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 1
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSM",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "lessThan",
+          "value" : 16,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 4,
+    "event" : {
+      "type" : "amsm_before_4_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 2,
+            "Max" : 3
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 4
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 1
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "equal",
+          "value" : "AMSM",
+          "fact" : "Meter_Type"
+        },
+        {
+          "operator" : "greaterThanInclusive",
+          "value" : 16,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 3,
+    "event" : {
+      "type" : "amsm_after_4_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 2,
+            "Max" : 3
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 4
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 2
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "lessThan",
+          "value" : 14,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 2,
+    "event" : {
+      "type" : "before_2_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 1,
+            "Max" : 2
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 3
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 4
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "conditions" : {
+      "priority" : 1,
+      "all" : [
+        {
+          "operator" : "greaterThanInclusive",
+          "value" : 14,
+          "fact" : "Hour"
+        }
+      ]
+    },
+    "priority" : 1,
+    "event" : {
+      "type" : "after_2_pm",
+      "params" : {
+        "actions" : [
+          {
+            "Type" : "Priority_Move_In",
+            "Min" : 2,
+            "Max" : 3
+          },
+          {
+            "Type" : "Standard_Move_In",
+            "Min" : 4
+          },
+          {
+            "Type" : "Self_Selected_Switch",
+            "Min" : 4
+          },
+          {
+            "Type" : "Move_Out",
+            "Min" : 2
+          }
+        ]
+      }
+    }
+  }
+
+]

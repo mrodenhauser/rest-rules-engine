@@ -1,0 +1,27 @@
+[
+    
+  {
+      "conditions" : {
+        "type" : "bad_debt_result",
+        "priority" : 1,
+        "all" : [
+          {            
+            "fact" : "bad_debt",
+            "operator" : "greaterThanInclusive",
+            "value" : 40            
+          }
+        ]
+      },
+      "event" : {
+        "type" : "bad_debt_result",
+        "params" : {
+          "actions" : [
+            {
+                "Message" : "Credit Review"
+            }
+          ]
+        }
+      }
+    }
+  
+  ]

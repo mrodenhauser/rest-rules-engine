@@ -1,0 +1,30 @@
+[
+    {        
+        "rule_name": "Available_Date",
+        "fact": 
+        { 
+            "Meter_Type" :"AMSR",
+            "Hour":14
+        },
+        "event" : {
+            "type" : "amsr_before_2_pm",
+            "params" : {
+                "actions" : [ 
+                    {
+                        "Type" : "Standard_Move_In",
+                        "Min" : 1
+                    }, 
+                    {
+                        "Type" : "Self_Selected_Switch",
+                        "Min" : 1
+                    }, 
+                    {
+                        "Type" : "Move_Out",
+                        "Min" : 1
+                    }
+                ]
+            }
+        },
+     "first_result_only": true
+    }
+]

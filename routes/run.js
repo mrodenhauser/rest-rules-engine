@@ -54,6 +54,7 @@ router.post('/ruleset/:rule_set_id',
             let rule_set = await astrulesservice_helper.getRuleByName(rule_name);
             if (rule_set) {
                 let result = await rules_helper.evaluate(rule_set, fact, first_result_only);
+                console.log(result);
                 res.send(result);
             }
             else {

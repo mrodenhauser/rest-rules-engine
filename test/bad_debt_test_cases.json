@@ -1,0 +1,11 @@
+[
+    {        
+        "rule_name": "Bad_Debt",
+        "type" : "bad_debt_result",
+        "fact": 
+        { 
+            "bad_debt" :40
+        },
+       "response" : "Credit Review"
+    }
+]
