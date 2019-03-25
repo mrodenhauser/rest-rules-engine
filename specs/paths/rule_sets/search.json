@@ -1,0 +1,41 @@
+{
+  "tags": [
+    "rule_sets"
+  ],
+  "summary": "Searches for rule sets using query string params as filters",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Name of the rule set you want to retrieve"
+    }
+  ],
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/error_list"
+          }
+        }
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/named_rule_set"
+          }
+        }
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "/rule_sets/{id}": {
+    "get": {
+      "$ref": "get_by_id.json"
+    }
+  },
+  "/rule_sets": {
+    "get": {
+      "$ref": "search.json"
+    },
+    "post": {
+      "$ref": "insert.json"
+    }
+  }
+}

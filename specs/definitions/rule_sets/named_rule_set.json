@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string",
+      "pattern": "/^[a-f\\d]{24}$/i",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "rules": {
+      "$ref": "./rule_set.json"
+    }
+  },
+  "required": [
+    "name",
+    "rules"
+  ]
+}

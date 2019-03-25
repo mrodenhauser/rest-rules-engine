@@ -1,4 +1,4 @@
 {
   "$ref": "./run/run.json",
-  "$ref": "./conditions/conditions.json"
+  "$ref": "./rule_sets/rule_sets.json"
 }

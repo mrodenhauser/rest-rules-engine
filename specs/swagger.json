@@ -66,13 +66,6 @@
       "condition": {
         "type": "object",
         "properties": {
-          "_id": {
-            "type": "string",
-            "format": "/^[a-f\\d]{24}$/i"
-          },
-          "name": {
-            "type": "string"
-          },
           "any": {
             "type": "array",
             "minItems": 1,
@@ -229,13 +222,6 @@
             "conditions": {
               "type": "object",
               "properties": {
-                "_id": {
-                  "type": "string",
-                  "format": "/^[a-f\\d]{24}$/i"
-                },
-                "name": {
-                  "type": "string"
-                },
                 "any": {
                   "type": "array",
                   "minItems": 1,
@@ -392,6 +378,189 @@
             "event"
           ]
         }
+      },
+      "named_rule_set": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "pattern": "/^[a-f\\d]{24}$/i",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "conditions": {
+                  "type": "object",
+                  "properties": {
+                    "any": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    },
+                    "all": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "oneOf": [
+                    {
+                      "required": [
+                        "all"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "any"
+                      ]
+                    }
+                  ]
+                },
+                "priority": {
+                  "type": "integer"
+                },
+                "event": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "conditions",
+                "event"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "rules"
+        ]
       },
       "error_list": {
         "type": "array",
@@ -558,12 +727,12 @@
         }
       }
     },
-    "/conditions/{id}": {
+    "/rule_sets/{id}": {
       "get": {
         "tags": [
-          "conditions"
+          "rule_sets"
         ],
-        "summary": "Gets a condition by id",
+        "summary": "Gets a rule set by id",
         "parameters": [
           {
             "in": "path",
@@ -572,20 +741,28 @@
               "type": "string"
             },
             "required": true,
-            "description": "Id of the condition you want to retrieve"
+            "description": "Id of the rule set you want to retrieve"
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/condition"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
             }
           },
           "401": {
@@ -597,33 +774,41 @@
         }
       }
     },
-    "/conditions": {
+    "/rule_sets": {
       "get": {
         "tags": [
-          "conditions"
+          "rule_sets"
         ],
-        "summary": "Searches for conditions using query string params as filters",
+        "summary": "Searches for rule sets using query string params as filters",
         "parameters": [
           {
-            "in": "path",
-            "name": "id",
+            "in": "query",
+            "name": "name",
             "schema": {
               "type": "string"
             },
-            "description": "Id of the condition you want to retrieve"
+            "description": "Name of the rule set you want to retrieve"
           }
         ],
         "responses": {
           "200": {
             "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/event"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
             }
           },
           "401": {
@@ -633,16 +818,16 @@
       },
       "post": {
         "tags": [
-          "conditions"
+          "rule_sets"
         ],
-        "summary": "Inserts a condition",
+        "summary": "Inserts a rule set",
         "requestBody": {
-          "description": "condition",
+          "description": "rule set",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/condition"
+                "$ref": "#/components/schemas/named_rule_set"
               }
             }
           }
@@ -650,14 +835,22 @@
         "responses": {
           "200": {
             "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/condition"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
             }
           },
           "400": {
             "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
             }
           },
           "401": {
