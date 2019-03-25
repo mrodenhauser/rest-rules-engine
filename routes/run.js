@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const rules_helper = require('../lib/rule.helper');
 const validation_helper = require('../lib/validation.helper');
-const rules_service = require('../lib/services/astrules.service');
+const rule_set_service = require('../lib/services/rule_set.service');
 const evaluation_request_validation_middleware = validation_helper.validation_middleware('evaluation_request');
 const fact_run_request_validation_middleware = validation_helper.validation_middleware('fact_run_request');
 const fact_rule_name_request_validation_middleware = validation_helper.validation_middleware('fact_rule_name_request');
@@ -48,10 +48,10 @@ router.post('/ruleset/:rule_set_id',
     fact_rule_name_request_validation_middleware,
     async function (req, res, next) {
         try {
-            let rule_name = req.body.rule_name;                                    
+            let rule_name = req.params.rule_name;
             let fact = req.body.fact;
             let first_result_only = req.fact_rule_name_request.first_result_only;
-            let rule_set = await rules_service.getRuleByName(rule_name);
+            let rule_set = await rule_set_service.search({Name: rule_name});
             if (rule_set) {
                 let result = await rules_helper.evaluate(rule_set, fact, first_result_only);
                 res.send(result);

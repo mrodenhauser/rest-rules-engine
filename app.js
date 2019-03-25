@@ -1,9 +1,9 @@
 require('dotenv').config();
-let createError = require('http-errors');
-let express = require('express');
-let path = require('path');
-let cookieParser = require('cookie-parser');
-let logger = require('morgan');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('log-driver')({ level: "trace" });
+const morgan = require('morgan');
 
 let enginesRouter = require('./routes/engine');
 
@@ -17,7 +17,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('combined'));
+app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -29,7 +29,7 @@ app.use('/docs/swagger', function (req, res) {
 });
 
 app.use('/run', require('./routes/run'));
-app.use('/conditions', require('./routes/conditions'));
+app.use('/rule_sets', require('./routes/rule_sets'));
 app.use('/engines/', enginesRouter);
 
 app.use('/', swaggerUi.serve);
@@ -43,7 +43,7 @@ app.get('/',
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-    next(createError(404));
+    res.sendStatus(404);
 });
 
 // error handler
@@ -59,9 +59,7 @@ app.use(function (err, req, res, next) {
         request_query: req.query,
         request_body: req.body
     };
-    console.error(JSON.stringify(error_details));
-    res.locals.message = err.message;
-    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    logger.error(JSON.stringify(error_details));
 
     // render the error page
     res.status(err.status || 500);
