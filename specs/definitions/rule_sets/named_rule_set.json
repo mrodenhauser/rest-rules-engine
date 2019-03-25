@@ -3,7 +3,7 @@
   "properties": {
     "_id": {
       "type": "string",
-      "pattern": "/^[a-f\\d]{24}$/i",
+      "pattern": "^[a-fA-F0-9]{24}$",
       "readOnly": true
     },
     "name": {

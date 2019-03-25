@@ -8,7 +8,8 @@
       "in": "path",
       "name": "rule_set_id",
       "schema": {
-        "type": "integer"
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{24}$"
       },
       "required": true,
       "description": "Id of the ruleset you want to use for evaluation"
@@ -28,14 +29,22 @@
   "responses": {
     "400": {
       "description": "Bad Request",
-      "schema": {
-        "$ref": "#/components/schemas/error_list"
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/error_list"
+          }
+        }
       }
     },
     "200": {
       "description": "Ok",
-      "schema": {
-        "$ref": "#/components/schemas/event"
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/event"
+          }
+        }
       }
     },
     "401": {
