@@ -54,7 +54,10 @@ app.use(function (err, req, res, next) {
         request_body: req.body
     };
 
-    if (err.code) {
+    if (err.name === 'UnauthorizedError'){
+        res.status(401).send(err.message);
+    }
+    else if (err.code) {
         logger.warn(JSON.stringify(error_details));
         res.status(400);
         res.send([err.message]);

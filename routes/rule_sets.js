@@ -2,7 +2,12 @@ const router = require('express').Router();
 const validation_helper = require('../lib/validation.helper');
 const rules_service = require('../lib/services/rule_set.service');
 const condition_validation_middleware = validation_helper.validation_middleware('named_rule_set');
-const _ = require('lodash');
+const jwt_middleware = require('../lib/middlewares/jwt.middleware');
+
+router.use(jwt_middleware.verify_token({
+    audience: process.env.BRE_AUDIENCE,
+    issuer: process.env.BRE_ISSUER
+}));
 
 router.get('/:id', async function (req, res, next) {
     try {
@@ -21,6 +26,12 @@ router.get('/:id', async function (req, res, next) {
 
 router.get('/', async function (req, res, next) {
     try {
+        if (req.query.name){
+            req.query.name = {
+                $regex: req.query.name,
+                $options: 'i'
+            };
+        }
         let results = await rules_service.search(req.query);
         if (results && results.length) {
             res.send(results);
