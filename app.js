@@ -1,27 +1,16 @@
 require('dotenv').config();
 const express = require('express');
-const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('log-driver')({level: "trace"});
 const morgan = require('morgan');
-
-let enginesRouter = require('./routes/engine');
 
 let swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./specs/swagger.json');
 
 let app = express();
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
 app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/docs/swagger', function (req, res) {
     swaggerDocument.servers[0].url = 'http://' + req.get('host');
@@ -30,7 +19,6 @@ app.use('/docs/swagger', function (req, res) {
 
 app.use('/run', require('./routes/run'));
 app.use('/rule_sets', require('./routes/rule_sets'));
-app.use('/engines/', enginesRouter);
 
 app.use('/', swaggerUi.serve);
 app.get('/',
