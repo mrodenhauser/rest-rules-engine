@@ -17,14 +17,22 @@
   "responses": {
     "400": {
       "description": "Bad Request",
-      "schema": {
-        "$ref": "#/components/schemas/error_list"
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/error_list"
+          }
+        }
       }
     },
     "200": {
       "description": "Ok",
-      "schema": {
-        "$ref": "#/components/schemas/event"
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/event"
+          }
+        }
       }
     },
     "401": {
