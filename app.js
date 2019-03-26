@@ -1,14 +1,40 @@
 require('dotenv').config();
 const express = require('express');
-const logger = require('log-driver')({level: "trace"});
+const logger = require('log-driver')({
+    format: function () {
+        let log = {level: arguments[0]};
+        if (arguments[1]) {
+            if (typeof arguments[1] === 'object') {
+                log = Object.assign(log, arguments[1]);
+            }
+            else if (typeof arguments[1] === 'string') {
+                log.message = arguments[1];
+            }
+        }
+        return JSON.stringify(log);
+    },
+    level: "trace"
+});
 const morgan = require('morgan');
+const morgan_json = require('morgan-json');
 
 let swaggerUi = require('swagger-ui-express'),
     swaggerDocument = require('./specs/swagger.json');
 
 let app = express();
 
-app.use(morgan('combined'));
+const format = morgan_json({
+    level: 'trace',
+    message: ':date[iso] :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms',
+    date: ':date[iso]',
+    ip: ':remote-addr',
+    method: ':method',
+    url: ':url',
+    status: ':status',
+    response_time: ':response-time'
+});
+app.use(morgan(format));
+app.use(morgan('[trace] ":date[iso]" :remote-addr :remote-user :method :url HTTP/:http-version :status :res[content-length] - :response-time ms'));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 
@@ -36,7 +62,6 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
-    // set locals, only providing error in development
     let ip = (req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
@@ -54,7 +79,8 @@ app.use(function (err, req, res, next) {
         request_body: req.body
     };
 
-    if (err.name === 'UnauthorizedError'){
+    if (err.name === 'UnauthorizedError') {
+        logger.trace(error_details);
         res.status(401).send(err.message);
     }
     else if (err.code) {
