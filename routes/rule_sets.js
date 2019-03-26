@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const validation_helper = require('../lib/validation.helper');
 const rules_service = require('../lib/services/rule_set.service');
-const condition_validation_middleware = validation_helper.validation_middleware('named_rule_set');
+const rule_set_validation_middleware = validation_helper.validation_middleware('named_rule_set');
+const rule_set_patch_validation_middleware = validation_helper.validation_middleware('rule_set_patch');
 const jwt_middleware = require('../lib/middlewares/jwt.middleware');
 
 router.use(jwt_middleware.verify_token({
@@ -23,6 +24,19 @@ router.get('/:id', async function (req, res, next) {
         next(err);
     }
 });
+
+router.patch('/:id',
+    rule_set_patch_validation_middleware,
+    async function (req, res, next) {
+        try {
+            let rule_set = req.rule_set_patch;
+            let result = await rules_service.update(req.params.id, rule_set, req.user.sub);
+            res.send(result);
+        }
+        catch (err) {
+            next(err);
+        }
+    });
 
 router.get('/', async function (req, res, next) {
     try {
@@ -46,17 +60,16 @@ router.get('/', async function (req, res, next) {
 });
 
 router.post('/',
-    condition_validation_middleware,
+    rule_set_validation_middleware,
     async function (req, res, next) {
         try {
             let rule_set = req.named_rule_set;
-            let result = await rules_service.insert(rule_set);
+            let result = await rules_service.insert(rule_set, req.user.sub);
             res.send(result);
         }
         catch (err) {
             next(err);
         }
     });
-
 
 module.exports = router;

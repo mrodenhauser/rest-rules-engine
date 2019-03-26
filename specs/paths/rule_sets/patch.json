@@ -1,0 +1,54 @@
+{
+  "tags": [
+    "rule_sets"
+  ],
+  "summary": "Updates a rule set",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string",
+        "pattern": "^[a-fA-F0-9]{24}$"
+      },
+      "required": true,
+      "description": "Id of the rule set you want to update"
+    }
+  ],
+  "requestBody": {
+    "description": "rule set",
+    "required": true,
+    "content": {
+      "application/json": {
+        "schema": {
+          "$ref": "#/components/schemas/rule_set_patch"
+        }
+      }
+    }
+  },
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/error_list"
+          }
+        }
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "#/components/schemas/named_rule_set"
+          }
+        }
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}

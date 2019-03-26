@@ -2,6 +2,9 @@
   "/rule_sets/{id}": {
     "get": {
       "$ref": "get_by_id.json"
+    },
+    "patch": {
+      "$ref": "patch.json"
     }
   },
   "/rule_sets": {
