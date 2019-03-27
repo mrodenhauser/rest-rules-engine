@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "test": "nyc mocha",
     "merge": "swagger-merger -i ./specs/swagger.spec.json -o ./specs/swagger.json",
     "commit": "git cz",
     "release": "standard-version && git push && git push --tags"
@@ -33,9 +34,12 @@
     "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "commitizen": "^3.0.7",
     "cz-conventional-changelog": "^2.1.0",
     "husky": "^1.3.1",
+    "mocha": "^6.0.2",
+    "nyc": "^13.3.0",
     "standard-version": "^5.0.2",
     "swagger-merger": "^1.4.3",
     "validate-commit-msg": "^2.14.0"

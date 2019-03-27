@@ -4,7 +4,6 @@ const validation_helper = require('../lib/validation.helper');
 const rule_set_service = require('../lib/services/rule_set.service');
 const evaluation_request_validation_middleware = validation_helper.validation_middleware('evaluation_request');
 const fact_run_request_validation_middleware = validation_helper.validation_middleware('fact_run_request');
-const fact_rule_name_request_validation_middleware = validation_helper.validation_middleware('fact_rule_name_request');
 const jwt_middleware = require('../lib/middlewares/jwt.middleware');
 
 router.use(jwt_middleware.verify_token({
