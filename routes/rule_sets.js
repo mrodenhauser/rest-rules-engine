@@ -38,9 +38,24 @@ router.patch('/:id',
         }
     });
 
+router.delete('/:id', async function (req, res, next) {
+    try {
+        let result = await rules_service.delete(req.params.id);
+        if (result) {
+            res.send(result);
+        }
+        else {
+            res.sendStatus(404);
+        }
+    }
+    catch (err) {
+        next(err);
+    }
+});
+
 router.get('/', async function (req, res, next) {
     try {
-        if (req.query.name){
+        if (req.query.name) {
             req.query.name = {
                 $regex: req.query.name,
                 $options: 'i'
