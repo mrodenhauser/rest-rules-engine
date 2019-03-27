@@ -2,8 +2,7 @@
   "type": "object",
   "properties": {
     "_id": {
-      "type": "string",
-      "pattern": "^[a-fA-F0-9]{24}$",
+      "$ref": "../id.json",
       "readOnly": true
     },
     "Date_Created": {

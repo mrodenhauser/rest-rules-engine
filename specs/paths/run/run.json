@@ -1,12 +1,12 @@
 {
+  "/run/{rule_set_id}": {
+    "post": {
+      "$ref": "run_fact.json"
+    }
+  },
   "/run": {
     "post": {
       "$ref": "run_post.json"
-    }
-  },
-  "/run/ruleset/{rule_set_id}": {
-    "post": {
-      "$ref": "run_fact.json"
     }
   }
 }

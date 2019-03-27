@@ -17,19 +17,31 @@
     }
   ],
   "paths": {
-    "/run": {
+    "/run/{rule_set_id}": {
       "post": {
         "tags": [
           "run"
         ],
-        "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
+        "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rule_set_id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the ruleset you want to use for evaluation"
+          }
+        ],
         "requestBody": {
-          "description": "Rules and fact to evaluate",
+          "description": "Fact and flag for first result only",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/evaluation_request"
+                "$ref": "#/components/schemas/fact_run_request"
               }
             }
           }
@@ -61,31 +73,19 @@
         }
       }
     },
-    "/run/ruleset/{rule_set_id}": {
+    "/run": {
       "post": {
         "tags": [
           "run"
         ],
-        "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "rule_set_id",
-            "schema": {
-              "type": "string",
-              "pattern": "^[a-fA-F0-9]{24}$"
-            },
-            "required": true,
-            "description": "Id of the ruleset you want to use for evaluation"
-          }
-        ],
+        "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
         "requestBody": {
-          "description": "Fact and flag for first result only",
+          "description": "Rules and fact to evaluate",
           "required": true,
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/fact_run_request"
+                "$ref": "#/components/schemas/evaluation_request"
               }
             }
           }
