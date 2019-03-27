@@ -7,3 +7,8 @@ Lot of work left to do...
 3) add ability to specify external rules (other REST APIs) via json config and PUT as resource. See if this can be contributed to core json-rules-engine
 4) testing
 5) add web views for GUI. 
+
+
+## Examples
+
+![Commits](examples/commit.svg)
