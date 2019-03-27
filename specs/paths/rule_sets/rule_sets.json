@@ -5,6 +5,9 @@
     },
     "patch": {
       "$ref": "patch.json"
+    },
+    "delete": {
+      "$ref": "delete.json"
     }
   },
   "/rule_sets": {
