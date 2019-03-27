@@ -12,20 +12,8 @@ router.use(jwt_middleware.verify_token({
     issuer: process.env.BRE_ISSUER
 }));
 
-router.post('/',
-    evaluation_request_validation_middleware,
-    async function (req, res, next) {
-        try {
-            let request = req.evaluation_request;
-            let result = await rules_helper.evaluate(request.rules, request.fact, request.first_result_only);
-            res.send(result);
-        }
-        catch (err) {
-            next(err);
-        }
-    });
-
 router.post('/:rule_set_id',
+    validation_helper.id_param_validation_middleware('rule_set_id'),
     fact_run_request_validation_middleware,
     async function (req, res, next) {
         try {
@@ -40,6 +28,19 @@ router.post('/:rule_set_id',
             else {
                 res.sendStatus(404);
             }
+        }
+        catch (err) {
+            next(err);
+        }
+    });
+
+router.post('/',
+    evaluation_request_validation_middleware,
+    async function (req, res, next) {
+        try {
+            let request = req.evaluation_request;
+            let result = await rules_helper.evaluate(request.rules, request.fact, request.first_result_only);
+            res.send(result);
         }
         catch (err) {
             next(err);

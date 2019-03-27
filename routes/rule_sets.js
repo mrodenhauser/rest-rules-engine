@@ -10,22 +10,25 @@ router.use(jwt_middleware.verify_token({
     issuer: process.env.BRE_ISSUER
 }));
 
-router.get('/:id', async function (req, res, next) {
-    try {
-        let result = await rules_service.getById(req.params.id);
-        if (result) {
-            res.send(result);
+router.get('/:id',
+    validation_helper.id_param_validation_middleware(),
+    async function (req, res, next) {
+        try {
+            let result = await rules_service.getById(req.params.id);
+            if (result) {
+                res.send(result);
+            }
+            else {
+                res.sendStatus(404);
+            }
         }
-        else {
-            res.sendStatus(404);
+        catch (err) {
+            next(err);
         }
-    }
-    catch (err) {
-        next(err);
-    }
-});
+    });
 
 router.patch('/:id',
+    validation_helper.id_param_validation_middleware(),
     rule_set_patch_validation_middleware,
     async function (req, res, next) {
         try {
@@ -38,20 +41,22 @@ router.patch('/:id',
         }
     });
 
-router.delete('/:id', async function (req, res, next) {
-    try {
-        let result = await rules_service.delete(req.params.id);
-        if (result) {
-            res.send(result);
+router.delete('/:id',
+    validation_helper.id_param_validation_middleware(),
+    async function (req, res, next) {
+        try {
+            let result = await rules_service.delete(req.params.id);
+            if (result) {
+                res.send(result);
+            }
+            else {
+                res.sendStatus(404);
+            }
         }
-        else {
-            res.sendStatus(404);
+        catch (err) {
+            next(err);
         }
-    }
-    catch (err) {
-        next(err);
-    }
-});
+    });
 
 router.get('/', async function (req, res, next) {
     try {
