@@ -62,6 +62,9 @@ app.use(function (req, res, next) {
 
 // error handler
 app.use(function (err, req, res, next) {
+    if (Array.isArray(err)) {
+        return res.status(400).send(err);
+    }
     let ip = (req.headers['x-forwarded-for'] ||
         req.connection.remoteAddress ||
         req.socket.remoteAddress ||
