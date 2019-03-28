@@ -1,0 +1,22 @@
+[
+    {        
+        "rule_name": "Past_Due",
+        "type": "past_due_result",
+        "fact": 
+        { 
+            "past_due" :40
+        },
+        "first_result_only" : true,        
+       "response" : "Continue Enrollment"
+    },
+    {        
+        "rule_name": "Past_Due",
+        "type": "past_due_result",
+        "fact": 
+        { 
+            "past_due" :50
+        },
+        "first_result_only" : true,        
+       "response" : "Continue Enrollment"
+    }
+]

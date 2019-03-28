@@ -1,0 +1,23 @@
+[
+  {
+    "conditions": {
+      "all": [
+        {
+          "operator" : "greaterThanInclusive",
+          "value" : 40,
+          "fact" : "Past_Due"
+        }
+      ]
+    },
+    "event": {
+      "type": "past_due_result",
+      "params": {
+        "actions": [
+          {
+            "Message" : "Continue Enrollment"
+          }
+        ]
+      }
+    }
+  }
+]

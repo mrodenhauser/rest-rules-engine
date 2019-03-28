@@ -1,0 +1,15 @@
+[
+
+    {        
+        "rule_name": "Block_Switch",
+        "type": "switch_hold_result",
+        "fact": 
+        { 
+            "Switch_Hold" :true,
+            "Service_Type" : "Switch",
+            "Channel_Name" :"EP"
+        },
+        "first_result_only" : true,        
+       "response" : "Block Switch"
+    }
+]

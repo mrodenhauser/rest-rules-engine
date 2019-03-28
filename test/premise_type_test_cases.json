@@ -1,0 +1,25 @@
+[
+
+    {        
+        "rule_name": "Premise_Type",
+        "type": "premise_type_result",
+        "fact": 
+        { 
+            "Premise_Type" :"Small Non Residential",
+            "Channel_Name" :"EP"
+        },
+        "first_result_only" : true,        
+       "response" : "Continue Enrollment"
+    },
+    {        
+        "rule_name": "Premise_Type",
+        "type": "premise_type_result",
+        "fact": 
+        { 
+            "Premise_Type" :"Small Commercial",
+            "Channel_Name" :"EP"
+        },
+        "first_result_only" : true,        
+       "response" : "Continue Enrollment"
+    }  
+]

@@ -1,27 +1,24 @@
 [
-    
   {
-      "conditions" : {
-        "type" : "bad_debt_result",
-        "priority" : 1,
-        "all" : [
-          {            
-            "fact" : "bad_debt",
-            "operator" : "greaterThanInclusive",
-            "value" : 40            
+    "conditions": {
+      "all": [
+        {
+          "operator": "greaterThanInclusive",
+          "value": 40,
+          "fact": "bad_debt"
+        }
+      ]
+    },
+    "priority": 1,
+    "event": {
+      "type": "bad_debt_result",
+      "params": {
+        "actions": [
+          {
+            "Message": "Credit Review"
           }
         ]
-      },
-      "event" : {
-        "type" : "bad_debt_result",
-        "params" : {
-          "actions" : [
-            {
-                "Message" : "Credit Review"
-            }
-          ]
-        }
       }
     }
-  
-  ]
+  }
+]
