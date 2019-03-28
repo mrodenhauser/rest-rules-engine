@@ -1,9 +1,0 @@
-{
-  "conditions": {
-    "$ref": "../conditions/young-adult-rocky-mnts.json"
-  },
-  "priority": 1,
-  "event": {
-    "$ref": "../events/award-amazon-50.json"
-  }
-}

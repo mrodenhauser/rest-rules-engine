@@ -1,19 +1,18 @@
 {
   "tags": [
-    "run"
+    "rule_sets"
   ],
-  "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
-  "requestBody": {
-    "description": "Rules and fact to evaluate",
-    "required": true,
-    "content": {
-      "application/json": {
-        "schema": {
-          "$ref": "#/components/schemas/evaluation_request"
-        }
-      }
+  "summary": "Searches for rule sets using query string params as filters",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "name",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Name of the rule set you want to retrieve"
     }
-  },
+  ],
   "responses": {
     "400": {
       "description": "Bad Request",
@@ -30,7 +29,7 @@
       "content": {
         "application/json": {
           "schema": {
-            "$ref": "#/components/schemas/event"
+            "$ref": "#/components/schemas/named_rule_set"
           }
         }
       }

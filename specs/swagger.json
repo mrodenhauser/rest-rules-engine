@@ -11,7 +11,354 @@
       "description": "http url"
     }
   ],
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/run/{rule_set_id}": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rule_set_id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the ruleset you want to use for evaluation"
+          }
+        ],
+        "requestBody": {
+          "description": "Fact and flag for first result only",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/fact_run_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/run": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
+        "requestBody": {
+          "description": "Rules and fact to evaluate",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/evaluation_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/rule_sets/{id}": {
+      "get": {
+        "tags": [
+          "rule_sets"
+        ],
+        "summary": "Gets a rule set by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the rule set you want to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "rule_sets"
+        ],
+        "summary": "Updates a rule set",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the rule set you want to update"
+          }
+        ],
+        "requestBody": {
+          "description": "rule set",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/rule_set_patch"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "rule_sets"
+        ],
+        "summary": "Deletes a rule set by id",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the rule set you want to remove"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/rule_sets": {
+      "get": {
+        "tags": [
+          "rule_sets"
+        ],
+        "summary": "Searches for rule sets using query string params as filters",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Name of the rule set you want to retrieve"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "rule_sets"
+        ],
+        "summary": "Inserts a rule set",
+        "requestBody": {
+          "description": "rule set",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/named_rule_set"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/named_rule_set"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "condition_criteria": {
         "type": "object",
@@ -379,6 +726,385 @@
           ]
         }
       },
+      "named_rule_set": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "pattern": "^[a-fA-F0-9]{24}$",
+            "readOnly": true
+          },
+          "Date_Created": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "Date_Last_Modified": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "name": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "conditions": {
+                  "type": "object",
+                  "properties": {
+                    "any": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    },
+                    "all": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "oneOf": [
+                    {
+                      "required": [
+                        "all"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "any"
+                      ]
+                    }
+                  ]
+                },
+                "priority": {
+                  "type": "integer"
+                },
+                "event": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "conditions",
+                "event"
+              ]
+            }
+          }
+        },
+        "required": [
+          "name",
+          "rules"
+        ]
+      },
+      "rule_set_patch": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "rules": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "conditions": {
+                  "type": "object",
+                  "properties": {
+                    "any": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    },
+                    "all": {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "fact": {
+                                "type": "string"
+                              },
+                              "operator": {
+                                "type": "string",
+                                "enum": [
+                                  "equal",
+                                  "notEqual",
+                                  "lessThan",
+                                  "lessThanInclusive",
+                                  "greaterThan",
+                                  "greaterThanInclusive",
+                                  "in",
+                                  "notIn",
+                                  "contains",
+                                  "doesNotContain"
+                                ]
+                              },
+                              "value": {
+                                "anyOf": [
+                                  {
+                                    "type": "number"
+                                  },
+                                  {
+                                    "type": "integer"
+                                  },
+                                  {
+                                    "type": "string"
+                                  },
+                                  {
+                                    "type": "boolean"
+                                  },
+                                  {
+                                    "type": "array"
+                                  },
+                                  {
+                                    "type": "object"
+                                  }
+                                ]
+                              }
+                            },
+                            "required": [
+                              "fact",
+                              "operator",
+                              "value"
+                            ]
+                          },
+                          {
+                            "$ref": "#/components/schemas/condition"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "oneOf": [
+                    {
+                      "required": [
+                        "all"
+                      ]
+                    },
+                    {
+                      "required": [
+                        "any"
+                      ]
+                    }
+                  ]
+                },
+                "priority": {
+                  "type": "integer"
+                },
+                "event": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "params": {
+                      "type": "object"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "conditions",
+                "event"
+              ]
+            }
+          }
+        },
+        "anyOf": [
+          {
+            "required": [
+              "name"
+            ]
+          },
+          {
+            "required": [
+              "rules"
+            ]
+          }
+        ]
+      },
       "error_list": {
         "type": "array",
         "items": {
@@ -416,153 +1142,7 @@
         "required": [
           "fact"
         ]
-      },
-      "fact_rule_name_request": {
-        "type": "object",
-        "properties": {
-          "rule_name":{
-            "type": "string"
-          },
-          "fact": {
-            "type": "object"
-          },    
-          "first_result_only": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "fact",
-          "rule_name"
-        ]
-      }
-      
-    }
-  },
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
-  "paths": {
-    "/run": {
-      "post": {
-        "tags": [
-          "run"
-        ],
-        "summary": "Runs an engine with supplied rules, fact, and flag for first result only",
-        "requestBody": {
-          "description": "Rules and fact to evaluate",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/evaluation_request"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/event"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/run/ruleset/{rule_set_id}": {
-      "post": {
-        "tags": [
-          "run"
-        ],
-        "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "rule_set_id",
-            "schema": {
-              "type": "integer"
-            },
-            "required": true,
-            "description": "Id of the ruleset you want to use for evaluation"
-          }
-        ],
-        "requestBody": {
-          "description": "Fact and flag for first result only",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/fact_run_request"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/event"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/run/rules/{rule_name}": {
-      "post": {
-        "tags": [
-          "rules"
-        ],
-        "summary": "Runs an engine with supplied rule name, facts and return result only",               
-        "requestBody": {
-          "description": "Fact and flag for first result only",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/fact_rule_name_request"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Ok",
-            "schema": {
-              "$ref": "#/components/schemas/event"
-            }
-          },
-          "400": {
-            "description": "Bad Request",
-            "schema": {
-              "$ref": "#/components/schemas/error_list"
-            }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
       }
     }
-
   }
 }

@@ -1,27 +1,27 @@
 {
   "tags": [
-    "run"
+    "rule_sets"
   ],
-  "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
+  "summary": "Updates a rule set",
   "parameters": [
     {
       "in": "path",
-      "name": "rule_set_id",
+      "name": "id",
       "schema": {
         "type": "string",
         "pattern": "^[a-fA-F0-9]{24}$"
       },
       "required": true,
-      "description": "Id of the ruleset you want to use for evaluation"
+      "description": "Id of the rule set you want to update"
     }
   ],
   "requestBody": {
-    "description": "Fact and flag for first result only",
+    "description": "rule set",
     "required": true,
     "content": {
       "application/json": {
         "schema": {
-          "$ref": "#/components/schemas/fact_run_request"
+          "$ref": "#/components/schemas/rule_set_patch"
         }
       }
     }
@@ -42,7 +42,7 @@
       "content": {
         "application/json": {
           "schema": {
-            "$ref": "#/components/schemas/event"
+            "$ref": "#/components/schemas/named_rule_set"
           }
         }
       }

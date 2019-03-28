@@ -3,6 +3,8 @@
   "condition": {"$ref": "./conditions/condition.json"},
   "event": {"$ref": "./events/event.json"},
   "rule_set": {"$ref": "./rule_sets/rule_set.json"},
+  "named_rule_set": {"$ref":  "./rule_sets/named_rule_set.json"},
+  "rule_set_patch": {"$ref":  "./rule_sets/rule_set_patch.json"},
   "error_list": {"$ref": "./error_list.json"},
   "evaluation_request": {"$ref": "./evaluation_request/evaluation_request.json"},
   "fact_run_request": {"$ref": "./fact_run_request/fact_run_request.json"}

@@ -1,27 +1,16 @@
 {
   "tags": [
-    "run"
+    "rule_sets"
   ],
-  "summary": "Runs an engine with supplied rule id, fact, and flag for first result only",
-  "parameters": [
-    {
-      "in": "path",
-      "name": "rule_set_id",
-      "schema": {
-        "type": "string",
-        "pattern": "^[a-fA-F0-9]{24}$"
-      },
-      "required": true,
-      "description": "Id of the ruleset you want to use for evaluation"
-    }
-  ],
+  "summary": "Inserts a rule set",
+
   "requestBody": {
-    "description": "Fact and flag for first result only",
+    "description": "rule set",
     "required": true,
     "content": {
       "application/json": {
         "schema": {
-          "$ref": "#/components/schemas/fact_run_request"
+          "$ref": "#/components/schemas/named_rule_set"
         }
       }
     }
@@ -42,7 +31,7 @@
       "content": {
         "application/json": {
           "schema": {
-            "$ref": "#/components/schemas/event"
+            "$ref": "#/components/schemas/named_rule_set"
           }
         }
       }

@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "rules": {
+      "$ref": "./rule_set.json"
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "required": [
+        "rules"
+      ]
+    }
+  ]
+}

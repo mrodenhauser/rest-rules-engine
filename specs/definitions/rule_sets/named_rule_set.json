@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "_id": {
+      "$ref": "../id.json",
+      "readOnly": true
+    },
+    "Date_Created": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "Date_Last_Modified": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "rules": {
+      "$ref": "./rule_set.json"
+    }
+  },
+  "required": [
+    "name",
+    "rules"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "tags": [
+    "conditions"
+  ],
+  "summary": "Searches for conditions using query string params as filters",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Id of the condition you want to retrieve"
+    }
+  ],
+  "responses": {
+    "400": {
+      "description": "Bad Request",
+      "schema": {
+        "$ref": "#/components/schemas/error_list"
+      }
+    },
+    "200": {
+      "description": "Ok",
+      "schema": {
+        "$ref": "#/components/schemas/event"
+      }
+    },
+    "401": {
+      "description": "Unauthorized"
+    }
+  }
+}

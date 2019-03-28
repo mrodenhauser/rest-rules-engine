@@ -1,0 +1,21 @@
+{
+  "/rule_sets/{id}": {
+    "get": {
+      "$ref": "get_by_id.json"
+    },
+    "patch": {
+      "$ref": "patch.json"
+    },
+    "delete": {
+      "$ref": "delete.json"
+    }
+  },
+  "/rule_sets": {
+    "get": {
+      "$ref": "search.json"
+    },
+    "post": {
+      "$ref": "insert.json"
+    }
+  }
+}
