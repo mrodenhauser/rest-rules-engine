@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.2.0](http://neer-bitbucket:7990/scm/gd/rest_rules_engine/compare/v0.1.0...v0.2.0) (2019-03-28)
+
+
+### Bug Fixes
+
+* **package:** Fixed package.json ([5d136bb](http://neer-bitbucket:7990/scm/gd/rest_rules_engine/commits/5d136bb))
+* **run:** Run by rule set id path was not correct ([12abc79](http://neer-bitbucket:7990/scm/gd/rest_rules_engine/commits/12abc79))
+
+
+### Features
+
+* **rule_sets:** Added delete functionality  to routes ([1dda6e6](http://neer-bitbucket:7990/scm/gd/rest_rules_engine/commits/1dda6e6))
+* **validation:** Added param validation for id ([8440bd2](http://neer-bitbucket:7990/scm/gd/rest_rules_engine/commits/8440bd2))
+
+
+
 # 0.1.0 (2019-03-27)
 
 
