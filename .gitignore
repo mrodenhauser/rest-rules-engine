@@ -4,3 +4,4 @@ node_modules
 coverage
 pkg
 .nyc_output
+.vscode
