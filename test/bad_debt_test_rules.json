@@ -13,11 +13,7 @@
     "event": {
       "type": "bad_debt_result",
       "params": {
-        "actions": [
-          {
-            "Message": "Credit Review"
-          }
-        ]
+        "Status": "Credit Review"
       }
     }
   }

@@ -1,22 +1,25 @@
 [
-    {
-        "rule_name": "Bad_Debt",
-        "type": "bad_debt_result",
-        "fact":
-        {
-            "bad_debt" :40
-        },
-        "first_result_only" : true,
-       "response" : "Credit Review"
+  {
+    "name": "Bad Debt Less than $40",
+    "pass": false,
+    "fact": {
+      "bad_debt": 20
     },
-    {
-        "rule_name": "Bad_Debt",
-        "type": "bad_debt_result",
-        "fact":
-        {
-            "bad_debt" :50
-        },
-        "first_result_only" : true,
-       "response" : "Credit Review"
+    "first_result_only": true,
+    "response": "No matching rule"
+  },
+  {
+    "name": "Bad Debt Greater than $40",
+    "pass": true,
+    "fact": {
+      "bad_debt": 50
+    },
+    "first_result_only": true,
+    "response": {
+      "type": "bad_debt_result",
+      "params": {
+        "Status": "Credit Review"
+      }
     }
+  }
 ]
