@@ -1,22 +1,22 @@
 [
-    {        
-        "rule_name": "Deposit_Required",
-        "type": "deposit_result",
-        "fact": 
-        { 
-            "CustomerAge" : 65
-        },
-        "first_result_only" : true,        
-       "response" : "Continue Enrollment"
+  {
+    "rule_name": "Deposit_Required",
+    "type": "deposit_result",
+    "fact": {
+      "Channel_Name": "EP",
+      "CustomerAge": 65
     },
-    {        
-        "rule_name": "Deposit_Required",
-        "type": "deposit_result",
-        "fact": 
-        { 
-            "CreditScore" : 280
-        },
-        "first_result_only" : true,        
-       "response" : "Continue Enrollment"
-    }
+    "first_result_only": true,
+    "response": "No Deposit Required"
+  },
+  {
+    "rule_name": "Deposit_Required",
+    "type": "deposit_result",
+    "fact": {
+      "Channel_Name": "EP",
+      "CreditScore": 280
+    },
+    "first_result_only": true,
+    "response": "No Deposit Required"
+  }
 ]

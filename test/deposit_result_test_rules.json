@@ -1,38 +1,35 @@
 [
   {
     "conditions": {
-
-      "all":
-      [
-       [{
-          "fact" : "Channel_Name",
-          "operator" : "equal",
-          "value" : "EP"
-      }]
-     ,
-    {
-    "any": [
-      {
-        "fact" : "CustomerAge",
-        "operator" : "greaterThanInclusive",
-        "value" : 65
-      }, 
-      {
-        "fact" : "CreditScore",
-        "operator" : "greaterThanInclusive",
-        "value" : 280
-      }
-    ]
-  }
-  ] 
+      "all": [
+        {
+          "fact": "Channel_Name",
+          "operator": "equal",
+          "value": "EP"
+        },
+        {
+          "any": [
+            {
+              "fact": "CustomerAge",
+              "operator": "greaterThanInclusive",
+              "value": 65
+            },
+            {
+              "fact": "CreditScore",
+              "operator": "greaterThanInclusive",
+              "value": 280
+            }
+          ]
+        }
+      ]
     },
     "event": {
       "type": "deposit_result",
       "params": {
         "actions": [
           {
-            "Message" : "No Deposit Required"
-        }
+            "Message": "No Deposit Required"
+          }
         ]
       }
     }

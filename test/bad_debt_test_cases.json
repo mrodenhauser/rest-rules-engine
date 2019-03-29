@@ -1,22 +1,22 @@
 [
-    {        
+    {
         "rule_name": "Bad_Debt",
         "type": "bad_debt_result",
-        "fact": 
-        { 
+        "fact":
+        {
             "bad_debt" :40
         },
-        "first_result_only" : true,        
+        "first_result_only" : true,
        "response" : "Credit Review"
     },
-    {        
+    {
         "rule_name": "Bad_Debt",
         "type": "bad_debt_result",
-        "fact": 
-        { 
+        "fact":
+        {
             "bad_debt" :50
         },
-        "first_result_only" : true,        
+        "first_result_only" : true,
        "response" : "Credit Review"
     }
 ]

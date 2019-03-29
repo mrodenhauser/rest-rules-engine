@@ -1,38 +1,35 @@
 [
   {
     "conditions": {
-     
-      "all":
-      [
-       [{
-          "fact" : "Channel_Name",
-          "operator" : "equal",
-          "value" : "EP"
-       }]
-     ,
-    {
-    "any": [
-      {
-          "fact" : "Premise_Type",
-          "operator" : "equal",
-          "value" : "Small Non Residential"
-      }, 
-      {
-        "fact" : "Premise_Type",
-        "operator" : "equal",
-        "value" : "Small Commercial"
-      }
-    ]
-  }
-  ] 
+      "all": [
+        {
+          "fact": "Channel_Name",
+          "operator": "equal",
+          "value": "EP"
+        },
+        {
+          "any": [
+            {
+              "fact": "Premise_Type",
+              "operator": "equal",
+              "value": "Small Non Residential"
+            },
+            {
+              "fact": "Premise_Type",
+              "operator": "equal",
+              "value": "Small Commercial"
+            }
+          ]
+        }
+      ]
     },
     "event": {
-      "type": "pemise_type_result",
+      "type": "premise_type_result",
       "params": {
         "actions": [
           {
-            "Message" : "Continue Enrollment"
-        }
+            "Message": "Continue Enrollment"
+          }
         ]
       }
     }
