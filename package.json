@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "nyc mocha",
-    "merge": "swagger-merger -i ./engines/sample_rule.spec.json -o ./engines/sample_rule.json",
+    "merge": "swagger-merger -i ./specs/swagger.spec.json -o ./specs/swagger.json",
     "push": "git push && git push --tags",
     "git-update": "git remote update --prune",
     "commit": "git cz",
