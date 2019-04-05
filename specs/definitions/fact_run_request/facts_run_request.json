@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "facts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "first_result_only": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "facts"
+  ]
+}

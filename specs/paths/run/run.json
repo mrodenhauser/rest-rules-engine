@@ -1,7 +1,12 @@
 {
-  "/run/{rule_set_id}": {
+  "/run/{rule_set_id}/single": {
     "post": {
       "$ref": "run_fact.json"
+    }
+  },
+  "/run/{rule_set_id}": {
+    "post": {
+      "$ref": "run_facts.json"
     }
   },
   "/run": {

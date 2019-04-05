@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "fact": {
+      "type": "object"
+    },
+    "event": {
+      "$ref": "../events/event.json"
+    }
+  }
+}

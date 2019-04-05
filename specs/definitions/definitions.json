@@ -7,5 +7,7 @@
   "rule_set_patch": {"$ref":  "./rule_sets/rule_set_patch.json"},
   "error_list": {"$ref": "./error_list.json"},
   "evaluation_request": {"$ref": "./evaluation_request/evaluation_request.json"},
-  "fact_run_request": {"$ref": "./fact_run_request/fact_run_request.json"}
+  "fact_run_request": {"$ref": "./fact_run_request/fact_run_request.json"},
+  "facts_run_request": {"$ref":  "./fact_run_request/facts_run_request.json"},
+  "fact_run_response": {"$ref":  "./fact_run_request/fact_run_response.json"}
 }

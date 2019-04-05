@@ -17,7 +17,7 @@
     }
   ],
   "paths": {
-    "/run/{rule_set_id}": {
+    "/run/{rule_set_id}/single": {
       "post": {
         "tags": [
           "run"
@@ -52,7 +52,74 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/event"
+                  "$ref": "#/components/schemas/fact_run_response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/error_list"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/run/{rule_set_id}": {
+      "post": {
+        "tags": [
+          "run"
+        ],
+        "summary": "Runs an engine with supplied rule id, one or more facts, and flag indicating to return the first result only or not",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "rule_set_id",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-fA-F0-9]{24}$"
+            },
+            "required": true,
+            "description": "Id of the ruleset you want to use for evaluation"
+          }
+        ],
+        "requestBody": {
+          "description": "Fact and flag for first result only",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/facts_run_request"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "type": "array",
+                      "minItems": 1,
+                      "items": {
+                        "$ref": "#/components/schemas/fact_run_response"
+                      }
+                    },
+                    {
+                      "$ref": "#/components/schemas/fact_run_response"
+                    }
+                  ]
                 }
               }
             }
@@ -1142,6 +1209,43 @@
         "required": [
           "fact"
         ]
+      },
+      "facts_run_request": {
+        "type": "object",
+        "properties": {
+          "facts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object"
+            }
+          },
+          "first_result_only": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "facts"
+        ]
+      },
+      "fact_run_response": {
+        "type": "object",
+        "properties": {
+          "fact": {
+            "type": "object"
+          },
+          "event": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object"
+              }
+            }
+          }
+        }
       }
     }
   }
